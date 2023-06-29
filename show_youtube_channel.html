@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Read data from youtube_channel_json.php -->
+    <div id="app">
+        <!-- Show YouTube channel information. -->
+        <div id="channel">
+            <div class="desc">
+                <div class="icon">
+                    <img :src="channel.profile_pic" alt="">
+                </div>
+                <div class="description">
+                    <h3>{{ channel.name }}</h3><span><i class="fa-solid fa-circle-check fa-xs"></i></span>
+                    <p>{{ channel.desc }}</p>
+                </div>
+            </div>
+            <div class="videos-label">
+                <div>
+                    VIDEOS
+                </div>
+            </div>
+        </div>
+        <!-- Show list of YouTube channel videos. -->
+        <div id="items">
+            <div class="item" v-for="item of items">
+                <a :href="item.link">
+                    <img :src="item.thumbnail" alt="">
+                    <div class="info">
+                        <div class="icon">
+                            <img :src="channel.profile_pic" alt="">
+                        </div>
+                        <div class="desc-info">
+                            <div class="titles">
+                                <div class="title">
+                                    <abbr v-if="item.description" :title="
+                                    item.title + ' | ' + item.description">
+                                        {{ item.title }}
+                                        <span v-if="item.description"> | {{ item.description }}</span>
+                                    </abbr>
+                                    <abbr v-else :title="
+                                    item.title">
+                                        {{ item.title }}
+                                    </abbr>
+                                </div>
+                            </div>
+                            <div class="owner">{{ channel.name }}<span><i
+                                        class="fa-solid fa-circle-check fa-2xs"></i></span></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
